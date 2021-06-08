@@ -26,7 +26,6 @@ def get_filters():
     tag = input("Day (all or monday=0, tuesday=1, ...): ").lower()
     while tag not in tag_moglich :
         tag = input("Please again, only all or 0-6(all or monday=0, ...): ").lower()
-    
     print('-'*40)
     
     #mapping only for possible printouts
@@ -35,7 +34,6 @@ def get_filters():
     day = tag
     
     return city, month, day
-
 
 def load_data(city, month, day):
 
@@ -87,7 +85,6 @@ def time_stats(df):
 
 def station_stats(df):
     """Displays statistics on the most popular stations and trip."""
-
     print('\nCalculating The Most Popular Stations and Trip...\n')
     start_time = time.time()
 
@@ -160,17 +157,14 @@ def user_stats(df):
         counts_of_birthyear = int(df['Birth Year'].mode().max())
         print("Counts of Most Birth Year :\n",counts_of_birthyear)
 
-
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-
 
 def main():
     while True:
         city, month, day = get_filters()
         df = load_data(city, month, day)
         #df, df_raw = load_data(city, month, day)  ALTERNATIVELY: if non-filtered raw data wanted
-        
         time_stats(df)
         station_stats(df)
         trip_duration_stats(df)
@@ -184,7 +178,6 @@ def main():
                 row += 5
             else:        
                 break
-
         restart = input('\nWould you like to restart? Enter yes or no.\n').lower()
         if restart != 'yes':
             break
@@ -192,13 +185,3 @@ def main():
 if __name__ == "__main__":
 	main()
 
-"""
-Used Links/Forums:
-    Pandas 1.2.4 dokumentation
-    Docs.python.org
-    Living-Sun.com
-    StackoverFlow.com
-    RealPython.com
-    DelftStack.com
-    StatisQuo.de 
-"""
