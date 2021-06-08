@@ -48,7 +48,7 @@ def load_data(city, month, day):
         filename = CITY_DATA["washington"]
     
     df = pd.read_csv(filename)
-    #df_raw = pd.read_csv(filename)   ALTERNATIVELY: if non-filtered raw data wanted
+    
     df['Start Time'] = pd.to_datetime(df['Start Time'],format='%Y-%m-%d %H:%M:%S')
     df['hour'] =  df['Start Time'].dt.hour
     df['month'] =  df['Start Time'].dt.month
@@ -61,7 +61,7 @@ def load_data(city, month, day):
         df = df.loc[(df.day_of_week == int(day))]
     
     return df
-    #return df, df_raw                  ALTERNATIVELY: if non-filtered raw data wanted
+    
 
 def time_stats(df):
     """Displays statistics on the most frequent times of travel."""
@@ -169,7 +169,7 @@ def main():
     while True:
         city, month, day = get_filters()
         df = load_data(city, month, day)
-        #df, df_raw = load_data(city, month, day)  ALTERNATIVELY: if non-filtered raw data wanted
+        
         
         time_stats(df)
         station_stats(df)
@@ -180,7 +180,7 @@ def main():
             viewData = input("Would you like to see the raw data? Type 'Yes' or 'No'.").lower()
             if viewData == "yes":
                 print('Dataframe', df.iloc[row:row+5])
-                #print('Dataframe', df_raw.iloc[row:row+5])    ALTERNATIVELY: if non-filtered raw data wanted
+                
                 row += 5
             else:        
                 break
